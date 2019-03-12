@@ -16,8 +16,8 @@
   "lint-staged": {
     "linters": {
       "*.{js,jsx,css,md}": [
-        "prettier --write",
         "eslint --fix",
+        "prettier --write",
         "git add"
       ]
     },
@@ -56,8 +56,10 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
+    "pg": "^7.8.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "sequelize": "^4.43.0",
     "uuid": "^3.3.2"
   }
 }

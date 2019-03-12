@@ -1,30 +1,24 @@
-const users = {
-	1: {
-		id: '1',
-		username: 'jeremy',
-		messageIds: [1]
-	},
-	2: {
-		id: '2',
-		username: 'carolyn',
-		messageIds: [2]
-	}
-}
+const Sequelize = require('sequelize')
 
-const messages = {
-	1: {
-		id: '1',
-		text: 'Hello World',
-		userId: '1'
-	},
-	2: {
-		id: '2',
-		text: 'By World',
-		userId: '2'
+const sequelize = new Sequelize(
+	process.env.DATABASE,
+	{
+		dialect: 'postgres'
 	}
-}
+)
+
+const models = {
+  User: sequelize.import('./user'),
+  Message: sequelize.import('./message'),
+};
+
+Object.keys(models).forEach(key => {
+  if ('associate' in models[key]) {
+    models[key].associate(models);
+  }
+});
 
 module.exports = {
-	users,
-	messages
+	sequelize,
+	models
 }
