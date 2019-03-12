@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start:client": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start:server": "nodemon server"
   },
   "husky": {
     "hooks": {
@@ -15,8 +16,8 @@
   "lint-staged": {
     "linters": {
       "*.{js,jsx,css,md}": [
-        "eslint --fix",
         "prettier --write",
+        "eslint --fix",
         "git add"
       ]
     },
@@ -51,10 +52,12 @@
     "@babel/preset-react": "^7.0.0",
     "apollo-server": "^2.4.8",
     "apollo-server-express": "^2.4.8",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "uuid": "^3.3.2"
   }
 }
