@@ -65,6 +65,7 @@ const createUsersWithMessages = async () => {
 			username: 'jeremyphilipson',
 			email: 'jeremy@jeremy.com',
 			password: 'jeremyp',
+			role: 'ADMIN',
 			messages: [{ text: 'Likes to learn GraphQL' }]
 		},
 		{ include: [models.Message] }

@@ -11,6 +11,8 @@ module.exports = gql`
 		signUp(username: String!, email: String!, password: String!): Token!
 
 		signIn(login: String!, password: String!): Token!
+
+		deleteUser(id: ID!): Boolean!
 	}
 
 	type Token {
@@ -23,6 +25,7 @@ module.exports = gql`
 		firstName: String
 		lastName: String
 		email: String!
+		role: String
 		messages: [Message!]
 	}
 `
