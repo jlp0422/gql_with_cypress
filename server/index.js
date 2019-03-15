@@ -1,7 +1,8 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const { ApolloServer } = require('apollo-server-express')
+const { ApolloServer, AuthenticationError } = require('apollo-server-express')
+const jwt = require('jsonwebtoken')
 
 const schema = require('./schema')
 const resolvers = require('./resolvers')
@@ -9,6 +10,20 @@ const { sequelize, models } = require('./models')
 
 const app = express()
 app.use(cors())
+
+const getMe = async req => {
+	const token = req.headers['x-token']
+
+	if (token) {
+		try {
+			return await jwt.verify(token, process.env.SECRET)
+		} catch (error) {
+			throw new AuthenticationError(
+				'Your session has expired. Please log in again.'
+			)
+		}
+	}
+}
 
 const server = new ApolloServer({
 	typeDefs: schema,
@@ -23,9 +38,9 @@ const server = new ApolloServer({
 			message
 		}
 	},
-	context: async () => ({
+	context: async ({ req }) => ({
 		models,
-		me: await models.User.findByLogin('jeremyphilipson'),
+		me: await getMe(req),
 		secret: process.env.SECRET
 	})
 })
