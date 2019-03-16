@@ -27,10 +27,10 @@ module.exports = {
 	plugins: [new webpack.HotModuleReplacementPlugin()],
 	devServer: {
 		contentBase: './dist',
-		hot: true
-		// port: 7000,
-		// proxy: {
-		//   '/graphql': 'http://localhost:8000'
-		// }
+		hot: true,
+		port: 3000,
+		proxy: {
+			'/graphql': 'http://localhost:8000'
+		}
 	}
 }

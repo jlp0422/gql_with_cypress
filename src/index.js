@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const title = 'Hello'
+const title = 'bones doc'
 const App = document.getElementById('app')
 
 ReactDOM.render(<div>{title}</div>, App)

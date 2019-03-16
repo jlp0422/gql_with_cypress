@@ -69,5 +69,13 @@
     "browser": true,
     "es6": true,
     "mocha": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["cypress/"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

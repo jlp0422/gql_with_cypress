@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:client": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "dev:server": "nodemon server"
+    "dev:server": "nodemon server",
+    "cypress:open": "./node_modules/.bin/cypress open"
   },
   "husky": {
     "hooks": {
@@ -34,6 +35,7 @@
     "@babel/preset-env": "^7.3.4",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "cypress": "^3.2.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.2",
