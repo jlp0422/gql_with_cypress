@@ -69,7 +69,7 @@ const createUsersWithMessages = async date => {
 			messages: [
 				{
 					text: 'Likes to learn GraphQL',
-					createdAt: date.setSeconds(date.getSeconds() + 1)
+					createdAt: date.setSeconds(date.getSeconds() + 2)
 				}
 			]
 		},
@@ -84,11 +84,11 @@ const createUsersWithMessages = async date => {
 			messages: [
 				{
 					text: 'Is watching "This is Us"',
-					createdAt: date.setSeconds(date.getSeconds() + 1)
+					createdAt: date.setSeconds(date.getSeconds() + 2)
 				},
 				{
 					text: 'Loves her beas',
-					createdAt: date.setSeconds(date.getSeconds() + 1)
+					createdAt: date.setSeconds(date.getSeconds() + 2)
 				}
 			]
 		},

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:client": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "start:server": "nodemon server"
+    "dev:client": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "dev:server": "nodemon server"
   },
   "husky": {
     "hooks": {
