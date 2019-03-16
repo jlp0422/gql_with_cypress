@@ -3,6 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const { ApolloServer, AuthenticationError } = require('apollo-server-express')
 const jwt = require('jsonwebtoken')
+const http = require('http')
 
 const schema = require('./schema')
 const resolvers = require('./resolvers')
@@ -38,14 +39,26 @@ const server = new ApolloServer({
 			message
 		}
 	},
-	context: async ({ req }) => ({
-		models,
-		me: await getMe(req),
-		secret: process.env.SECRET
-	})
+	context: async ({ req, connection }) => {
+		if (connection) {
+			return {
+				models
+			}
+		}
+
+		if (req) {
+			return {
+				models,
+				me: await getMe(req),
+				secret: process.env.SECRET
+			}
+		}
+	}
 })
 
 server.applyMiddleware({ app, path: '/graphql' })
+const httpServer = http.createServer(app)
+server.installSubscriptionHandlers(httpServer)
 
 const eraseOnSync = true
 
@@ -54,7 +67,7 @@ sequelize.sync({ force: eraseOnSync }).then(async () => {
 		createUsersWithMessages(new Date())
 	}
 
-	app.listen({ port: 8000 }, () => {
+	httpServer.listen({ port: 8000 }, () => {
 		console.log(`listening on port 8000/graphql`)
 	})
 })
